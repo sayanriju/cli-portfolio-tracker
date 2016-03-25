@@ -94,19 +94,6 @@ queryString = ''
 queryString += scrip.exchange + ":" + scrip.symbol + ',' for scrip in portfolio
 queryString = queryString.slice 0, -1
 hcf = math.gcd (scrip.unit for scrip in portfolio)...
-emptyRow = {
-  idx: ' '
-  symbol: ' ',
-  exchange: ' ',
-  unit: ' ',
-  buyPrice: ' ',
-  ltp: ' ',
-  investment: ' ',
-  value: ' ',
-  pl: ' ',
-  weightedUnits: ' ',
-  weightedLtp: ' '
-}
 colTotals = {
   idx: 0,
   symbol: 'Totals:',
