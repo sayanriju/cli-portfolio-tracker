@@ -15,5 +15,5 @@ module.exports =
       "buyPrice": 164.43,
       "ltp": 0.00
     }
+    
   ]
-  

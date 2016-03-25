@@ -1,8 +1,10 @@
 portfolio = require './portfolio.coffee'
+
 math = require 'mathjs'
 request = require 'request'
 chalk = require 'chalk'
 numeral = require 'numeral'
+
 Table = require 'tty-table'
 tableHeader = [
   {
@@ -90,12 +92,15 @@ tableHeader = [
 ]
 
 ltpList = {}
+
 queryString = ''
 queryString += scrip.exchange + ":" + scrip.symbol + ',' for scrip in portfolio
 queryString = queryString.slice 0, -1
+
 hcf = math.gcd (scrip.unit for scrip in portfolio)...
+
 colTotals = {
-  idx: 0,
+  idx: ' ',
   symbol: 'Totals:',
   exchange: ' ',
   unit: 0,
@@ -124,8 +129,7 @@ request 'http://www.google.com/finance/info?q='+queryString, (e, r, body) =>
     ## colTotals
     colTotals[key] += Number scrip[key] for key,val of scrip when key not in ['symbol', 'exchange', 'idx']
 
-  colTotals.idx = idx + 1
-  portfolio.push colTotals
+  portfolio.push colTotals ## the table footer
 
   table = new Table tableHeader, portfolio, {
     borderStyle : 1,
